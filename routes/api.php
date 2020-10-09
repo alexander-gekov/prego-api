@@ -32,3 +32,10 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
 Route::middleware('auth:api')->group(function () {
     Route::post('/logout', [\App\Http\Controllers\Auth\ApiAuthController::class, 'register'])->name('logout.api');
 });
+
+//Companies requests:
+Route::get('/companies', [App\Http\Controllers\CompanyController::class, 'index']);
+Route::get('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'show']);
+Route::post('/companies', [App\Http\Controllers\CompanyController::class, 'store']);
+Route::put('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'update']);
+Route::delete('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'delete']);
