@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4796c42d-78f8-4407-822b-f72437ebb49a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.rnd" beforeDir="false" afterPath="$PROJECT_DIR$/../.rnd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/Auth/ApiAuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Http/Controllers/Auth/ApiAuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/FirebaseController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/../database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/CompanyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Http/Controllers/CompanyController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Http/Middleware/Cors.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Http/Middleware/Cors.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Models/Company.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Models/Company.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/../bootstrap/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../config/cors.php" beforeDir="false" afterPath="$PROJECT_DIR$/../config/cors.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database/seeders/CompaniesTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/../database/seeders/CompaniesTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/../routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/../routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,6 +207,10 @@
       <workItem from="1601897900036" duration="707000" />
       <workItem from="1601910772778" duration="820000" />
       <workItem from="1601971472656" duration="1666000" />
+      <workItem from="1602492740555" duration="11687000" />
+      <workItem from="1602509559468" duration="2674000" />
+      <workItem from="1602527944235" duration="3594000" />
+      <workItem from="1602542511819" duration="2013000" />
     </task>
     <servers />
   </component>
@@ -211,6 +222,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1601972602713" />
+    <state width="1478" height="208" key="GridCell.Tab.0.bottom" timestamp="1602509685333">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="208" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1602509685333" />
+    <state width="1478" height="208" key="GridCell.Tab.0.center" timestamp="1602509685333">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="208" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1602509685333" />
+    <state width="1478" height="208" key="GridCell.Tab.0.left" timestamp="1602509685333">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="208" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1602509685333" />
+    <state width="1478" height="208" key="GridCell.Tab.0.right" timestamp="1602509685333">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="208" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1602509685333" />
     <state x="636" y="351" key="NewPhpFileDialog" timestamp="1601473791518">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

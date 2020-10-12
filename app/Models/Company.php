@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
-    // use HasFactory;
-    protected $fillable = ['user_id', 'company_name', 'office_number', 'owner_name', 'logo_img'];
+    use HasFactory;
+    public $fillable = ['user_id', 'company_name', 'office_number', 'owner_name', 'logo_img'];
 }

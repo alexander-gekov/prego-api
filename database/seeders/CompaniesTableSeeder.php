@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Company;
+use Illuminate\Database\Seeder;
 
 class CompaniesTableSeeder extends Seeder
 {
@@ -13,9 +13,10 @@ class CompaniesTableSeeder extends Seeder
         // Company::truncate();
 
         // $faker = \Faker\Factory::create();
+        Company::factory()->count(20)->create();
 
         Company::create([
-            'user_id' => 1,
+            'user_id' => 3,
             'company_name' => 'Prego',
             'office_number' => 'F147',
             'owner_name' => 'Christian',

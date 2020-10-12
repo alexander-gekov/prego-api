@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\Cors;
 use Illuminate\Http\Request;
 use App\Models\Company;
 use Redirect;
@@ -73,7 +74,7 @@ class CompanyController extends Controller
         // $company->owner_name=$request->owner_name;
 
         // if ($file = $request->file('logo_img')) {
-        // $destinationPath = 'images/'; 
+        // $destinationPath = 'images/';
         // $logoImage = $company->company_name . "_" . date('Ymd') . "." . $file->getClientOriginalExtension();
         // $file->move($destinationPath, $logoImage);
         // $company->logo_img=$logoImage;
@@ -108,7 +109,7 @@ class CompanyController extends Controller
     }
 
     public function update(Request $request, Company $company)
-    {      
+    {
         //SUCCESSFUL:
         // $company->user_id=$request->user_id;
         // $company->company_name=$request->company_name;
@@ -116,7 +117,7 @@ class CompanyController extends Controller
         // $company->owner_name=$request->owner_name;
 
         // if ($file = $request->file('logo_img')) {
-        // $destinationPath = 'images/'; 
+        // $destinationPath = 'images/';
         // $logoImage = date('YmdHis') . "." . $file->getClientOriginalExtension();
         // $file->move($destinationPath, $logoImage);
         // $company->logo_img=$logoImage;
@@ -131,12 +132,18 @@ class CompanyController extends Controller
 
 
         //TRY - Success:
-        $company->user_id=$request->user_id;
+//        if($request->has('user_id')){
+//            $company->user_id=$request->user_id;
+//        };
         $company->company_name=$request->company_name;
         $company->office_number=$request->office_number;
-        $company->owner_name=$request->owner_name;
-        $company->logo_img=$this->uploadLogoImage($request, $company);
-        
+//        if($request->has('owner_name')){
+//            $company->owner_name=$request->owner_name;
+//        };
+//        if($request->has('logo_img')){
+//            $company->logo_img=$this->uploadLogoImage($request, $company);
+//        };
+
         $company->save();
         return response()->json([
             'message' => 'success']);
@@ -156,7 +163,7 @@ class CompanyController extends Controller
     {
         $logoImage = $company->logo_img;
         if ($file = $request->file('logo_img')) {
-            $destinationPath = 'images/'; 
+            $destinationPath = 'images/';
             $logoImage = $company->company_name . "_" . date('Ymd') . "." . $file->getClientOriginalExtension();
             $file->move($destinationPath, $logoImage);
         }
@@ -167,5 +174,9 @@ class CompanyController extends Controller
     {
         $destinationPath = 'images/'.$company->logo_img;
         return Response::file($destinationPath);
+    }
+
+    public function getCompaniesByUserId(Request $request){
+        return response()->json(Company::where('user_id',$request->user_id)->get());
     }
 }

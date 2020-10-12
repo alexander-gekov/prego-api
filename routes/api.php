@@ -14,14 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
-Route::group(['middleware' => ['cors', 'json.response']], function () {
-
-    // ...
-
+Route::group(['middleware' => ['json.response']], function () {
     // public routes
     //THIS IS THE WAY OF WRITING THE ROUTES IN LARAVEL 8 (LIKE AN ARRAY)!!!
     Route::post('/login', [\App\Http\Controllers\Auth\ApiAuthController::class, 'login'])->name('login.api');
@@ -30,12 +27,17 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
 });
 
 Route::middleware('auth:api')->group(function () {
-    Route::post('/logout', [\App\Http\Controllers\Auth\ApiAuthController::class, 'register'])->name('logout.api');
+    Route::post('/logout', [\App\Http\Controllers\Auth\ApiAuthController::class, 'logout'])->name('logout.api');
 });
 
-//Companies requests:
-Route::get('/companies', [App\Http\Controllers\CompanyController::class, 'index']);
-Route::get('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'show']);
-Route::post('/companies', [App\Http\Controllers\CompanyController::class, 'store']);
-Route::put('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'update']);
-Route::delete('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'delete']);
+
+Route::middleware(['cors','auth:api'])->group(function (){
+    //Companies requests:
+    Route::get('/companies', [App\Http\Controllers\CompanyController::class, 'index']);
+    Route::get('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'show']);
+    Route::post('/companies', [App\Http\Controllers\CompanyController::class, 'store']);
+    Route::put('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'update']);
+    Route::delete('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'delete']);
+    Route::get('/{user_id}/companies',[\App\Http\Controllers\CompanyController::class, 'getCompaniesByUserId']);
+
+});
