@@ -10,8 +10,11 @@ use Illuminate\Support\Facades\Response;
 
 class CompanyController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        if($request->has('name')){
+            return Company::where('company_name',$request->name)->get();
+        }
         return Company::all();
     }
 

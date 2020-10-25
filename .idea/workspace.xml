@@ -3,17 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4796c42d-78f8-4407-822b-f72437ebb49a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/Auth/ApiAuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Http/Controllers/Auth/ApiAuthController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/CompanyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Http/Controllers/CompanyController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Middleware/Cors.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Http/Middleware/Cors.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Models/Company.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Models/Company.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../bootstrap/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/../bootstrap/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../config/cors.php" beforeDir="false" afterPath="$PROJECT_DIR$/../config/cors.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/seeders/CompaniesTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/../database/seeders/CompaniesTableSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/../routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/../routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +201,9 @@
       <workItem from="1602492740555" duration="11687000" />
       <workItem from="1602509559468" duration="2674000" />
       <workItem from="1602527944235" duration="3594000" />
-      <workItem from="1602542511819" duration="2013000" />
+      <workItem from="1602542511819" duration="2018000" />
+      <workItem from="1602572919804" duration="621000" />
+      <workItem from="1603540395912" duration="5818000" />
     </task>
     <servers />
   </component>
