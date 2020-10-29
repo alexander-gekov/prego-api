@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Company;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CompanyFactory extends Factory
@@ -23,10 +24,13 @@ class CompanyFactory extends Factory
     {
         return [
             //
-            'user_id' => 1,
-            'company_name' => $this->faker->name,
+            'user_id' => User::factory()->owner(),
+            'owner_name' => function (array $attributes) {
+                return User::find($attributes['user_id'])->name;
+            },
+            'company_name' => $this->faker->company,
             'office_number' => $this->faker->numberBetween(1,200),
-            'owner_name' => $this->faker->firstName . ' ' . $this->faker->lastName,
+            //'owner_name' => $this->faker->firstName . ' ' . $this->faker->lastName,
             'logo_img' => 'http://placekitten.com/300/300'
         ];
     }

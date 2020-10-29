@@ -2,6 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Appointment;
+use App\Models\Company;
+use App\Models\Employee;
+use App\Models\User;
+use App\Models\Visitor;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,8 +18,28 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        $this->call(UsersTableSeeder::class);
-        $this->call(CompaniesTableSeeder::class);
+        $this->call(RoleSeeder::class);
+
+        Company::factory()->count(rand(3,5))
+            ->create()
+            ->each(function($c)
+            {
+                Employee::factory()->count(rand(7,11))
+                ->state
+                    ([
+                        'company_id' => $c->id,
+                    ])
+                ->create()
+                ->each(function($e) use ($c)
+                {
+                    $e->appointments()->saveMany(Appointment::factory()->count(rand(0,3))
+                        ->state
+                        ([
+                            'employee_id' => $e->id,
+                            'company_id' => $c->id,
+                        ])
+                        ->create());
+                });
+            });
     }
 }

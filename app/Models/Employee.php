@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Company extends Model
+class Employee extends Model
 {
     use HasFactory;
-    public $fillable = ['user_id', 'company_name', 'office_number', 'owner_name', 'logo_img'];
+    protected $guarded = [];
     protected $with = ['user']; // Eager loads the user relationship;
+
 
     public function user()
     {
         return $this->belongsTo(User::class);
-
     }
 
     public function appointments()
@@ -22,9 +22,8 @@ class Company extends Model
         return $this->hasMany(Appointment::class);
     }
 
-    public function employees()
+    public function company()
     {
-        return $this->hasMany(Employee::class);
+        return $this->belongsTo(Company::class);
     }
-
 }
