@@ -24,13 +24,12 @@ class CompanyFactory extends Factory
     {
         return [
             //
-            'user_id' => User::factory()->owner(),
+            'manager_id' => User::factory()->manager(),
             'owner_name' => function (array $attributes) {
-                return User::find($attributes['user_id'])->name;
+                return User::find($attributes['manager_id'])->name;
             },
             'company_name' => $this->faker->company,
             'office_number' => $this->faker->numberBetween(1,200),
-            //'owner_name' => $this->faker->firstName . ' ' . $this->faker->lastName,
             'logo_img' => 'http://placekitten.com/300/300'
         ];
     }

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model
 {
     use HasFactory;
-    public $fillable = ['user_id', 'company_name', 'office_number', 'owner_name', 'logo_img'];
+    public $guarded = [];
     protected $with = ['user']; // Eager loads the user relationship;
 
     public function user()

@@ -32,7 +32,7 @@ class UserFactory extends Factory
         ];
     }
 
-    public function owner()
+    public function buildingManager()
     {
         return $this->state(function (array $attributes) {
             return [
@@ -41,11 +41,20 @@ class UserFactory extends Factory
         });
     }
 
-    public function employee()
+    public function manager()
     {
         return $this->state(function (array $attributes) {
             return [
                 'role_id' => 3,
+            ];
+        });
+    }
+
+    public function employee()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'role_id' => 4,
             ];
         });
     }
