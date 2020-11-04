@@ -13,7 +13,7 @@ class CreateCompaniesTable extends Migration
      */
     public function up()
     {
-        Schema::create('companies', function (Blueprint $table) {
+            Schema::create('companies', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('manager_id')->index('manager_id');
             $table->unsignedBigInteger('building_owner_id')->index('building_owner_id');

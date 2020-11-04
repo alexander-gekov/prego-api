@@ -20,7 +20,10 @@ class CreateFormsTable extends Migration
             $table->timestamps();
             $table->string('accent_color');
             $table->string('form_name');
+            $table->unsignedBigInteger('company_id');
             $table->softDeletes();
+
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
         });
     }
 

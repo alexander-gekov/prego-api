@@ -19,6 +19,9 @@ class CreateFormanswersTable extends Migration
             $table->unsignedBigInteger('visitor_id')->index('visitor_id');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('form_id')->references('id')->on('forms')->onDelete('cascade');
+
         });
     }
 
