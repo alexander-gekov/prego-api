@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4796c42d-78f8-4407-822b-f72437ebb49a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.rnd" beforeDir="false" afterPath="$PROJECT_DIR$/../.rnd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/Auth/ApiAuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Http/Controllers/Auth/ApiAuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/FirebaseController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/../database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,10 +12,12 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true">
     <pharConfigPath>$PROJECT_DIR$/../composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <executable />
+    </execution>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -175,7 +174,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -200,21 +201,31 @@
       <workItem from="1601897900036" duration="707000" />
       <workItem from="1601910772778" duration="820000" />
       <workItem from="1601971472656" duration="1666000" />
+      <workItem from="1604392403983" duration="14000" />
+      <workItem from="1604392435464" duration="65000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1601972602713">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1601972602713" />
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1604392479197">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1604392479197" />
     <state x="636" y="351" key="NewPhpFileDialog" timestamp="1601473791518">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="636" y="351" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1601473791518" />
     <state x="795" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601459934971" />
+    <state x="277" y="59" key="SettingsEditor" timestamp="1604392462579">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="277" y="59" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1604392462579" />
   </component>
 </project>
