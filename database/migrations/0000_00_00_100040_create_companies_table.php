@@ -13,17 +13,20 @@ class CreateCompaniesTable extends Migration
      */
     public function up()
     {
-        Schema::create('companies', function (Blueprint $table) {
+            Schema::create('companies', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id')->index('user_id');
+            $table->unsignedBigInteger('manager_id')->index('manager_id');
+            $table->unsignedBigInteger('building_owner_id')->index('building_owner_id');
             $table->string('company_name');
+            $table->string('building_name');
             $table->string('office_number');
             $table->string('owner_name');
             $table->text('logo_img');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('manager_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('building_owner_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

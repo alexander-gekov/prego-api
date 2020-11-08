@@ -16,9 +16,15 @@ class CreateFormsTable extends Migration
     {
         Schema::create('forms', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->json('json_form')->default(new Expression('(JSON_ARRAY())')); //Using an Expression instance will prevent wrapping the value in quotes and allow you to use database specific functions. One situation where this is particularly useful is when you need to assign default values to JSON columns.
+            $table->string('json_form');
+//                ->default(new Expression('(JSON_ARRAY())')); //Using an Expression instance will prevent wrapping the value in quotes and allow you to use database specific functions. One situation where this is particularly useful is when you need to assign default values to JSON columns.
             $table->timestamps();
-            $table->softDeletes();
+            $table->string('accent_color');
+            $table->string('form_name');
+            $table->unsignedBigInteger('company_id');
+            //$table->softDeletes();
+
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
         });
     }
 

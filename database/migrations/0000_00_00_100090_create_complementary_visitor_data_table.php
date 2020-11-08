@@ -23,7 +23,7 @@ class CreateComplementaryvisitordataTable extends Migration
 
             //$table->unique(['visitor_id','question_id']);
 
-            $table->foreign('visitor_id')->references('id')->on('visitor_data')->onDelete('cascade');
+            $table->foreign('visitor_id')->references('id')->on('visitors')->onDelete('cascade');
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
 
 

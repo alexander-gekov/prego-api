@@ -14,17 +14,17 @@ class CreateAppointmentsTable extends Migration
     public function up()
     {
         Schema::create('appointments', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('employee_id')->index('employee_id');
-            $table->unsignedBigInteger('visitor_id')->index('visitor_id');
-            $table->unsignedBigInteger('timeslot_id')->index('timeslot_id');
-            $table->unsignedBigInteger('company_id')->index('company_id');
+            $table->bigIncrements('id'); // maybe remove and use a composite key
+            $table->unsignedBigInteger('employee_id')->index();
+            $table->unsignedBigInteger('visitor_id')->index();
+            $table->unsignedBigInteger('company_id')->index();
+            $table->dateTime('time');
+//            $table->unique(['company_id', 'employee_id', 'visitor_id',]);
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
-            $table->foreign('visitor_id')->references('id')->on('visitor_data')->onDelete('cascade');
-            $table->foreign('timeslot_id')->references('id')->on('timeslots')->onDelete('cascade');
+            $table->foreign('visitor_id')->references('id')->on('visitors')->onDelete('cascade');
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
 
         });
