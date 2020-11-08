@@ -27,7 +27,6 @@ Route::group(['middleware' => ['json.response']], function () {
     Route::get('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'show']);
     Route::get('/companies/{company_id}/form', [\App\Http\Controllers\FormController::class, 'getForm']);
     Route::post('/companies/{company_id}/form', [\App\Http\Controllers\FormController::class, 'saveForm']);
-
 });
 
 Route::middleware('auth:api')->group(function () {
@@ -41,6 +40,4 @@ Route::middleware(['cors','auth:api'])->group(function (){
     Route::put('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'update']);
     Route::delete('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'delete']);
     Route::get('/{user_id}/companies',[\App\Http\Controllers\CompanyController::class, 'getCompaniesByUserId']);
-    Route::post('/companies/{company_name}/form', [\App\Http\Controllers\FormController::class, 'saveForm']);
-
 });

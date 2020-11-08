@@ -14,7 +14,6 @@ class CompanyController extends Controller
         if($request->has('name')){
             return Company::where('company_name',$request->name)->get();
         }
-
         return Company::all();
     }
 
@@ -142,6 +141,14 @@ class CompanyController extends Controller
 //        };
         $company->company_name=$request->company_name;
         $company->office_number=$request->office_number;
+        // Picture upload:
+        if($file = $request->file('image')){
+            $destinationPath = 'images/';
+            $logoImage = $company->id . date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $file->move($destinationPath, $logoImage);
+            $company->logo_img=$logoImage;
+        }
+
 //        if($request->has('owner_name')){
 //            $company->owner_name=$request->owner_name;
 //        };
