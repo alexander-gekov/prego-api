@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Middleware\Cors;
 use Illuminate\Http\Request;
 use App\Models\Company;
-use Redirect;
 use Illuminate\Support\Facades\Response;
 
 class CompanyController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        if($request->has('name')){
+            return Company::where('company_name',$request->name)->get();
+        }
+
         return Company::all();
     }
 
@@ -88,8 +91,10 @@ class CompanyController extends Controller
 
         //TRY - successful
         $company = new Company();
-        $company->user_id=$request->user_id;
+        $company->building_owner_id=$request->building_owner_id;
         $company->company_name=$request->company_name;
+        $company->manager_id=$request->manager_id;
+        $company->building_name=$request->building_name;
         $company->office_number=$request->office_number;
         $company->owner_name=$request->owner_name;
         $company->logo_img="no-logo.png";
@@ -177,6 +182,6 @@ class CompanyController extends Controller
     }
 
     public function getCompaniesByUserId(Request $request){
-        return response()->json(Company::where('user_id',$request->user_id)->get());
+        return response()->json(Company::where('building_owner_id',$request->user_id)->get());
     }
 }

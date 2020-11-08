@@ -24,8 +24,9 @@ Route::group(['middleware' => ['json.response']], function () {
     Route::post('/login', [\App\Http\Controllers\Auth\ApiAuthController::class, 'login'])->name('login.api');
     Route::post('/register', [\App\Http\Controllers\Auth\ApiAuthController::class, 'register'])->name('register.api');
     Route::get('/companies', [App\Http\Controllers\CompanyController::class, 'index']);
-    Route::post('/companies/{company}/form', [\App\Http\Controllers\FormController::class, 'saveForm']);
+    Route::get('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'show']);
     Route::get('/companies/{company_id}/form', [\App\Http\Controllers\FormController::class, 'getForm']);
+    Route::post('/companies/{company_id}/form', [\App\Http\Controllers\FormController::class, 'saveForm']);
 
 });
 
@@ -36,11 +37,10 @@ Route::middleware('auth:api')->group(function () {
 
 Route::middleware(['cors','auth:api'])->group(function (){
     //Companies requests:
-    Route::get('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'show']);
     Route::post('/companies', [App\Http\Controllers\CompanyController::class, 'store']);
     Route::put('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'update']);
     Route::delete('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'delete']);
     Route::get('/{user_id}/companies',[\App\Http\Controllers\CompanyController::class, 'getCompaniesByUserId']);
-
+    Route::post('/companies/{company_name}/form', [\App\Http\Controllers\FormController::class, 'saveForm']);
 
 });
