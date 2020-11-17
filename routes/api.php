@@ -39,7 +39,7 @@ Route::middleware(['cors','auth:api'])->group(function (){
     Route::post('/companies', [App\Http\Controllers\CompanyController::class, 'store']);
     Route::put('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'update']);
     Route::delete('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'delete']);
-    Route::get('/{user_id}/companies',[\App\Http\Controllers\CompanyController::class, 'getCompaniesByUserId']);
+    Route::get('/{user_id}/companies',[App\Http\Controllers\CompanyController::class, 'getCompaniesByUserId']);
 });
 
 Route::middleware(['cors','auth:api'])->group(function (){
@@ -48,5 +48,5 @@ Route::middleware(['cors','auth:api'])->group(function (){
     Route::post('/employees', [App\Http\Controllers\EmployeeController::class, 'store']);
     Route::put('/employees/{employee}', [App\Http\Controllers\EmployeeController::class, 'update']);
     Route::delete('/employees/{employee}', [App\Http\Controllers\EmployeeController::class, 'delete']);
-    Route::get('/{company_id}/employees',[\App\Http\Controllers\EmployeeController::class, 'getEmployeesByCompanyId']);
+    Route::get('/{company_id}/employees',[App\Http\Controllers\EmployeeController::class, 'getEmployeesByCompanyId']);
 });

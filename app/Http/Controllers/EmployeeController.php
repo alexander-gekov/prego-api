@@ -30,7 +30,7 @@ class EmployeeController extends Controller
     {
         $employee->first_name=$request->first_name;
         $employee->last_name=$request->last_name;
-        $employee->email=$request->email;
+//        $employee->email=$request->email;
 
         $employee->save();
         return response()->json([
