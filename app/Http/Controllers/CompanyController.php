@@ -189,6 +189,10 @@ class CompanyController extends Controller
     }
 
     public function getCompaniesByUserId(Request $request){
+        return response()->json(Company::where('building_owner_id',$request->user_id)->get());
+    }
+
+    public function getCompanyByManager(Request $request){
         return response()->json(Company::where('manager_id',$request->user_id)->get());
     }
 }

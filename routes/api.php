@@ -40,6 +40,7 @@ Route::middleware(['cors','auth:api'])->group(function (){
     Route::put('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'update']);
     Route::delete('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'delete']);
     Route::get('/{user_id}/companies',[App\Http\Controllers\CompanyController::class, 'getCompaniesByUserId']);
+    Route::get('/{user_id}/company',[App\Http\Controllers\CompanyController::class, 'getCompanyByManager']);
 });
 
 Route::middleware(['cors','auth:api'])->group(function (){
