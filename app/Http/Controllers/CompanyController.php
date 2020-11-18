@@ -93,10 +93,9 @@ class CompanyController extends Controller
         $company->building_owner_id=$request->building_owner_id;
         $company->company_name=$request->company_name;
         $company->manager_id=$request->manager_id;
-        $company->building_name=$request->building_name;
+        $company->manager_name=$request->manager_name;
         $company->office_number=$request->office_number;
-        $company->owner_name=$request->owner_name;
-        $company->logo_img="no-logo.png";
+        $company->logo_img=$request->logo_img;
 
         $company->save();
         return response()->json([

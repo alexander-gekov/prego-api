@@ -18,9 +18,13 @@ class CreateCompaniesTable extends Migration
             $table->unsignedBigInteger('manager_id')->index('manager_id');
             $table->unsignedBigInteger('building_owner_id')->index('building_owner_id');
             $table->string('company_name');
-            $table->string('building_name');
             $table->string('office_number');
-            $table->string('owner_name');
+            $table->string('manager_name');
+            $table->text('description')->nullable();
+            $table->text('history')->nullable();
+            $table->text('img1')->nullable();
+            $table->text('img2')->nullable();
+            $table->text('img3')->nullable();
             $table->text('logo_img');
             $table->timestamps();
             $table->softDeletes();

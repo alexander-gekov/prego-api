@@ -19,7 +19,6 @@ class CompaniesTableSeeder extends Seeder
             'user_id' => 3,
             'company_name' => 'Prego',
             'office_number' => 'F147',
-            'owner_name' => 'Christian',
             'logo_img' => 'pic1.jpg',
         ]);
     }

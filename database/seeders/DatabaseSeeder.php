@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Appointment;
+use App\Models\BuildingOwner;
 use App\Models\Company;
 use App\Models\Employee;
 use App\Models\User;
@@ -20,14 +21,15 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleSeeder::class);
         User::factory()->count(2)->buildingManager()->create();
-        $buildingNames = array("A2","B1");
+//        $buildingNames = array("A2","B1");
 
         Company::factory()->count(rand(3,5))
-            ->state(function (array $attributes) use ($buildingNames)
+            ->state(function (array $attributes)
+//            use ($buildingNames)
             {
                 $r = rand(1,2);
-                return ['building_owner_id' => $r,
-                        'building_name' => $buildingNames[$r - 1]];
+                return ['building_owner_id' => $r];
+//                        'building_name' => $buildingNames[$r - 1]];
             })
             ->create()
             ->each(function($c)
@@ -49,5 +51,7 @@ class DatabaseSeeder extends Seeder
                         ->create());
                 });
             });
+
+        BuildingOwner::factory()->count(2)->create();
     }
 }

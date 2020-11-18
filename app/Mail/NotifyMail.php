@@ -33,7 +33,7 @@ class NotifyMail extends Mailable
      */
     public function build()
     {
-        return $this->from('nevski00@gmail.com')
+        return $this->from('pfontys@gmail.com')
             ->view('emails.demoMail')
             ->with([
                 'password' => $this->password

@@ -19,7 +19,6 @@ class EmployeeController extends Controller
         $employee->company_id=$request->company_id;
         $employee->first_name=$request->first_name;
         $employee->last_name=$request->last_name;
-        $employee->email=$request->email;
 
         $employee->save();
         return response()->json([
@@ -30,7 +29,7 @@ class EmployeeController extends Controller
     {
         $employee->first_name=$request->first_name;
         $employee->last_name=$request->last_name;
-//        $employee->email=$request->email;
+
 
         $employee->save();
         return response()->json([

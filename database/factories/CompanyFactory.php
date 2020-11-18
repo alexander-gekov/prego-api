@@ -25,12 +25,15 @@ class CompanyFactory extends Factory
         return [
             //
             'manager_id' => User::factory()->manager(),
-            'owner_name' => function (array $attributes) {
-                return User::find($attributes['manager_id'])->name;
-            },
             'company_name' => $this->faker->company,
             'office_number' => $this->faker->numberBetween(1,200),
-            'logo_img' => 'http://placekitten.com/300/300'
+            'manager_name' => $this->faker-> name,
+            'description' => $this->faker-> text(500),
+            'history' => $this->faker-> text(500),
+            'img1' => 'https://picsum.photos/600',
+            'img2' => 'https://picsum.photos/600',
+            'img3' => 'https://picsum.photos/600',
+            'logo_img' => 'https://picsum.photos/600'
         ];
     }
 }
