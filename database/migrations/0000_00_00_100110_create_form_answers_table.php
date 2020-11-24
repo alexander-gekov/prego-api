@@ -16,7 +16,7 @@ class CreateFormanswersTable extends Migration
     {
         Schema::create('form_answers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->json('answers')->default(new Expression('(JSON_ARRAY())')); //Using an Expression instance will prevent wrapping the value in quotes and allow you to use database specific functions. One situation where this is particularly useful is when you need to assign default values to JSON columns.
+            $table->json('answers');
             $table->unsignedBigInteger('form_id')->index('form_id');
             $table->unsignedBigInteger('visitor_id')->index('visitor_id');
             $table->timestamps();

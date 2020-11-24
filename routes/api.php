@@ -27,6 +27,9 @@ Route::group(['middleware' => ['json.response']], function () {
     Route::get('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'show']);
     Route::get('/companies/{company_id}/form', [\App\Http\Controllers\FormController::class, 'getForm']);
     Route::post('/companies/{company_id}/form', [\App\Http\Controllers\FormController::class, 'saveForm']);
+    Route::get('/companies/{company_id}/form/answers', [\App\Http\Controllers\FormAnswerController::class, 'get']);
+    Route::get('/companies/{company_id}/form/answers', [\App\Http\Controllers\FormAnswerController::class, 'getById']);
+    Route::post('/companies/{company_id}/form/answers', [\App\Http\Controllers\FormAnswerController::class, 'store']);
 });
 
 Route::middleware('auth:api')->group(function () {
