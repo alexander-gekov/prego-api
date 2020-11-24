@@ -30,6 +30,8 @@ Route::group(['middleware' => ['json.response']], function () {
     Route::get('/companies/{company_id}/form/answers', [\App\Http\Controllers\FormAnswerController::class, 'get']);
     Route::get('/companies/{company_id}/form/answers', [\App\Http\Controllers\FormAnswerController::class, 'getById']);
     Route::post('/companies/{company_id}/form/answers', [\App\Http\Controllers\FormAnswerController::class, 'store']);
+    Route::get('/companies/{company_id}/form/answers/getData/{param}', [\App\Http\Controllers\FormAnswerController::class, 'getData']);
+    Route::get('/companies/{company_id}/form/answers/getData', [\App\Http\Controllers\FormAnswerController::class, 'getData']);
 });
 
 Route::middleware('auth:api')->group(function () {
