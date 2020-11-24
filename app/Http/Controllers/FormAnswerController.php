@@ -18,9 +18,9 @@ class FormAnswerController extends Controller
     {
 
         $formanswer = new FormAnswer();
-        $formanswer->form_id=$request->form_id;
+        $formanswer->company_id=$request->company_id;
         $formanswer->visitor_id=$request->visitor_id;
-        $formanswer->answers=json_decode($request->answers);
+        $formanswer->answers=json_encode($request->answers);
         $formanswer->save();
         return response()->json([
             'message' => 'success'
@@ -30,7 +30,7 @@ class FormAnswerController extends Controller
 
     public function get(Request $request) {
         //return Employee::where('company_id',$request->company_id)->get();
-        return FormAnswer::where('form_id', $request->form_id)->where('visitor_id', $request->visitor_id)->get();
+        return FormAnswer::where('company_id', $request->company_id)->where('visitor_id', $request->visitor_id)->get();
     }
 
     public function getById(Request $request) {
