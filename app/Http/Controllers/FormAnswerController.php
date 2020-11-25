@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\FormAnswer;
+use App\Models\Visitor;
 use Illuminate\Http\Request;
 
 class FormAnswerController extends Controller
@@ -19,7 +20,14 @@ class FormAnswerController extends Controller
 
         $formanswer = new FormAnswer();
         $formanswer->company_id = $request->company_id;
-        $formanswer->visitor_id = $request->visitor_id;
+        $data = json_encode($request->answers);
+        $decoded = json_decode($data);
+        $visitor = new Visitor();
+        $visitor->first_name = $decoded->{'firstname'};
+        $visitor->last_name = $decoded->{'lastname'};
+        $visitor->email = $decoded->{'email'};
+        $visitor->save();
+        $formanswer->visitor_id = $visitor->id;
         $formanswer->answers = json_encode($request->answers);
         $formanswer->save();
         return response()->json([

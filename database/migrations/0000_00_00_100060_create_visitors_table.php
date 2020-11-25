@@ -18,10 +18,10 @@ class CreateVisitorsTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email');
-            $table->string('phone_number');
-            $table->string('address');
-            $table->dateTime('checked_in');
-            $table->dateTime('checked_out');
+            $table->string('phone_number')->nullable();
+            $table->string('address')->nullable();
+            $table->dateTime('checked_in')->nullable();
+            $table->dateTime('checked_out')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

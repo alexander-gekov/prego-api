@@ -9,6 +9,8 @@ class Visitor extends Model
 {
     use HasFactory;
 
+    public $guarded = [];
+
     public function appointments()
     {
         return $this->hasOne(Appointment::class);
