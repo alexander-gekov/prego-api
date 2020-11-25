@@ -22,11 +22,13 @@ class FormAnswerController extends Controller
         $formanswer->company_id = $request->company_id;
         $data = json_encode($request->answers);
         $decoded = json_decode($data);
+
         $visitor = new Visitor();
         $visitor->first_name = $decoded->{'firstname'};
         $visitor->last_name = $decoded->{'lastname'};
         $visitor->email = $decoded->{'email'};
         $visitor->save();
+
         $formanswer->visitor_id = $visitor->id;
         $formanswer->answers = json_encode($request->answers);
         $formanswer->save();

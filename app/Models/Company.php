@@ -19,7 +19,12 @@ class Company extends Model
 
     public function appointments()
     {
-        return $this->hasMany(Appointment::class);
+        return $this->hasManyThrough(Appointment::class, Employee::class);
+//            'country_id', // Foreign key on users table...
+//            'user_id', // Foreign key on posts table...
+//            'id', // Local key on countries table...
+//            'id' // Local key on users table...
+
     }
 
     public function employees()

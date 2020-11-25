@@ -20,6 +20,7 @@ class Appointment extends Model
         return $this->belongsTo(Visitor::class);
     }
 
+    // TBR
     public function company()
     {
         return $this->belongsTo(Company::class);
