@@ -12,7 +12,4 @@ class Form extends Model
     protected $guarded = [
 
     ];
-
-
-
 }

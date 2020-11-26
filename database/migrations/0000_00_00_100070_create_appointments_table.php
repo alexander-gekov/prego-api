@@ -16,22 +16,18 @@ class CreateAppointmentsTable extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->bigIncrements('id'); // maybe remove and use a composite key
 
-            $table->json('answers'); // stores the form answers
+            $table->unsignedBigInteger('employee_id')->index('employee_id');
 
-            //<editor-fold desc="Description">
-            // these columns are used to pass the commonly used visitor data stored in the form answers
-            // without the need to get the entire json and parse the fields from it
-            //</editor-fold>
+            $table->json('form_answers'); // stores the form answers
+
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email');
             $table->string('phone_number')->nullable();
             $table->string('address')->nullable();
+            $table->dateTime('date_start');
+            $table->dateTime('date_end');
 
-            $table->unsignedBigInteger('employee_id')->index();
-
-            $table->dateTime('start_time');
-            $table->dateTime('end_time');
             $table->timestamps();
             $table->softDeletes();
 

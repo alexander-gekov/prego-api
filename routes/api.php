@@ -36,6 +36,19 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/logout', [\App\Http\Controllers\Auth\ApiAuthController::class, 'logout'])->name('logout.api');
 });
 
+Route::group(['middleware' => ['json.response']], function () {
+    Route::post('/appointments', [App\Http\Controllers\AppointmentController::class, 'store']);
+
+    Route::get('/appointments', [App\Http\Controllers\AppointmentController::class, 'index']);
+    Route::get('/employees/{employee_id}/appointments', [App\Http\Controllers\AppointmentController::class, 'findByEmployeeId']);
+    Route::get('/companies/{company_id}/appointments', [App\Http\Controllers\AppointmentController::class, 'findByCompanyId']);
+
+    Route::get('/appointments/{id}', [App\Http\Controllers\AppointmentController::class, 'findById']);
+    Route::get('employees/{employee_id}/appointments/{id}', [App\Http\Controllers\AppointmentController::class, 'findByIdAndEmployeeId']);
+    Route::get('/companies/{company_id}/appointments/{id}', [App\Http\Controllers\AppointmentController::class, 'findByIdAndCompanyId']);
+});
+
+
 
 Route::middleware(['cors','auth:api'])->group(function (){
     //Companies requests:

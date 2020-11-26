@@ -32,6 +32,7 @@ class FormAnswerController extends Controller
         $formanswer->visitor_id = $visitor->id;
         $formanswer->answers = json_encode($request->answers);
         $formanswer->save();
+
         return response()->json([
             'message' => 'success'
         ]);

@@ -10,20 +10,16 @@ class Appointment extends Model
     use HasFactory;
     protected $guarded = [];
 
+    protected $hidden = ['laravel_through_key'];
+
     public function employee()
     {
         return $this->belongsTo(Employee::class);
     }
 
-    public function visitor()
-    {
-        return $this->belongsTo(Visitor::class);
-    }
-
-    // TBR
+    // TBR consult about this
     public function company()
     {
         return $this->belongsTo(Company::class);
     }
-
 }

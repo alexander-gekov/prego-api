@@ -46,7 +46,6 @@ class DatabaseSeeder extends Seeder
                         ->state
                         ([
                             'employee_id' => $e->id,
-                            'company_id' => $c->id,
                         ])
                         ->create());
                 });
