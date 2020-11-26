@@ -17,6 +17,11 @@ class Company extends Model
 
     }
 
+    public function form()
+    {
+        return $this->hasOne(Form::class);
+    }
+
     public function employees()
     {
         return $this->hasMany(Employee::class);

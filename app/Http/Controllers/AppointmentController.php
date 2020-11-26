@@ -30,7 +30,7 @@ class AppointmentController extends Controller
        $decoded = json_decode($request->answers); // Attempt to create a PHP object from a JSON object
 
        try{
-           $date_start = new DateTime($decoded->{'date-start'}->{'date'});
+           $date_start = new DateTime($decoded->{'date-start'});
            $date_end = new DateTime($decoded->{'date-end'});
 
            if ($date_start > $date_end) throw new Exception();
