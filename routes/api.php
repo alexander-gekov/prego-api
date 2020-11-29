@@ -40,6 +40,8 @@ Route::group(['middleware' => ['json.response']], function () {
     Route::post('/appointments', [App\Http\Controllers\AppointmentController::class, 'store']);
 
     Route::get('/appointments', [App\Http\Controllers\AppointmentController::class, 'index']);
+    Route::get('/appointments/unavailable', [App\Http\Controllers\AppointmentController::class, 'getUnavailableTimeslots']);
+
     Route::get('/employees/{employee_id}/appointments', [App\Http\Controllers\AppointmentController::class, 'findByEmployeeId']);
     Route::get('/companies/{company_id}/appointments', [App\Http\Controllers\AppointmentController::class, 'findByCompanyId']);
 

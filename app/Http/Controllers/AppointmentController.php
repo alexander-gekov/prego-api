@@ -61,10 +61,8 @@ class AppointmentController extends Controller
    // UNCHECKED
    public function getUnavailableTimeslots(Request $request) {
        try{
-          $requestDate = date_format(new DateTime(json_decode($request->date_start)->{'date-start'}), 'Y-m-d');
-
           return response()->json(
-              $appointmentDurations = Appointment::whereDate('date_start', '=', $requestDate)
+              $appointmentDurations = Appointment::whereDate('date_start','like', substr($request->input('date-start'),0,10))->where('employee_id',$request->employee_id)
                   ->get(['date_start','date_end'])
           );
        }catch(Exception $e){
@@ -86,12 +84,12 @@ class AppointmentController extends Controller
         );
     }
 
-    public function findByEmployeeId(Request $request) {
+    public function findByEmployeeId($employee_id) {
         return response()->json(
-            Employee::find($request->employee_id)
+            Employee::find($employee_id)
                 ->appointments()
                 ->orderBy('date_start','desc')
-                ->get(empty($request->all()) ? $this->defaultParams : $request->all())
+                ->get($this->defaultParams)
         );
     }
 
