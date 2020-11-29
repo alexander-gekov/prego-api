@@ -17,9 +17,9 @@ class Company extends Model
 
     }
 
-    public function appointments()
+    public function form()
     {
-        return $this->hasMany(Appointment::class);
+        return $this->hasOne(Form::class);
     }
 
     public function employees()
@@ -27,4 +27,8 @@ class Company extends Model
         return $this->hasMany(Employee::class);
     }
 
+    public function appointments()
+    {
+        return $this->hasManyThrough(Appointment::class, Employee::class);
+    }
 }

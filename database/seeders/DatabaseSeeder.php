@@ -7,7 +7,6 @@ use App\Models\BuildingOwner;
 use App\Models\Company;
 use App\Models\Employee;
 use App\Models\User;
-use App\Models\Visitor;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -46,7 +45,6 @@ class DatabaseSeeder extends Seeder
                         ->state
                         ([
                             'employee_id' => $e->id,
-                            'company_id' => $c->id,
                         ])
                         ->create());
                 });

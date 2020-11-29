@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,11 +26,30 @@ Route::group(['middleware' => ['json.response']], function () {
     Route::get('/companies/{company}', [App\Http\Controllers\CompanyController::class, 'show']);
     Route::get('/companies/{company_id}/form', [\App\Http\Controllers\FormController::class, 'getForm']);
     Route::post('/companies/{company_id}/form', [\App\Http\Controllers\FormController::class, 'saveForm']);
+    Route::get('/companies/{company_id}/form/answers', [\App\Http\Controllers\FormAnswerController::class, 'get']);
+    Route::get('/companies/{company_id}/form/answers', [\App\Http\Controllers\FormAnswerController::class, 'getById']);
+    Route::post('/companies/{company_id}/form/answers', [\App\Http\Controllers\FormAnswerController::class, 'store']);
+    Route::get('/companies/{company_id}/form/answers/getData/{param?}', [\App\Http\Controllers\FormAnswerController::class, 'getData']);
 });
 
 Route::middleware('auth:api')->group(function () {
     Route::post('/logout', [\App\Http\Controllers\Auth\ApiAuthController::class, 'logout'])->name('logout.api');
 });
+
+Route::group(['middleware' => ['json.response']], function () {
+    Route::post('/appointments', [App\Http\Controllers\AppointmentController::class, 'store']);
+
+    Route::get('/appointments', [App\Http\Controllers\AppointmentController::class, 'index']);
+    Route::get('/appointments/unavailable', [App\Http\Controllers\AppointmentController::class, 'getUnavailableTimeslots']);
+
+    Route::get('/employees/{employee_id}/appointments', [App\Http\Controllers\AppointmentController::class, 'findByEmployeeId']);
+    Route::get('/companies/{company_id}/appointments', [App\Http\Controllers\AppointmentController::class, 'findByCompanyId']);
+
+    Route::get('/appointments/{id}', [App\Http\Controllers\AppointmentController::class, 'findById']);
+    Route::get('employees/{employee_id}/appointments/{id}', [App\Http\Controllers\AppointmentController::class, 'findByIdAndEmployeeId']);
+    Route::get('/companies/{company_id}/appointments/{id}', [App\Http\Controllers\AppointmentController::class, 'findByIdAndCompanyId']);
+});
+
 
 
 Route::middleware(['cors','auth:api'])->group(function (){
