@@ -47,4 +47,8 @@ class EmployeeController extends Controller
     public function getEmployeesByCompanyId(Request $request){
         return Employee::where('company_id',$request->company_id)->get();
     }
+
+    public function getEmployeeByUserId(Request $request) {
+        return response()->json(Employee::where('user_id',$request->user_id)->get());
+    }
 }
