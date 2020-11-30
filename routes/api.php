@@ -68,4 +68,5 @@ Route::middleware(['cors','auth:api'])->group(function (){
     Route::put('/employees/{employee}', [App\Http\Controllers\EmployeeController::class, 'update']);
     Route::delete('/employees/{employee}', [App\Http\Controllers\EmployeeController::class, 'delete']);
     Route::get('/{company_id}/employees',[App\Http\Controllers\EmployeeController::class, 'getEmployeesByCompanyId']);
+    Route::get('/employees',[App\Http\Controllers\EmployeeController::class, 'getEmployees']);
 });
