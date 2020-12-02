@@ -40,7 +40,7 @@ return [
             'port' => 587,
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => 'pfontys@gmail.com',
-            'password' => 'projectsfontys',
+            'password' => env('MAIL_PASSWORD', ''),
             'timeout' => null,
             'auth_mode' => null,
         ],
