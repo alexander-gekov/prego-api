@@ -14,6 +14,8 @@ class CreateAppointmentsTable extends Migration
     public function up()
     {
         Schema::create('appointments', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_unicode_ci';
             $table->bigIncrements('id'); // maybe remove and use a composite key
 
             $table->unsignedBigInteger('employee_id')->index('employee_id');
