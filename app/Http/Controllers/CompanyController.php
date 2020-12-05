@@ -54,6 +54,29 @@ class CompanyController extends Controller
             $file->move($destinationPath, $logoImage);
             $company->logo_img=$logoImage;
         }
+//        Evacuation
+        if($file = $request->file('img1')){
+            $destinationPath = 'images/';
+            $evacuation = $company->id . date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $file->move($destinationPath, $evacuation);
+            $company->img1=$evacuation;
+        }
+//        Img2
+        if($file = $request->file('img2')){
+            $destinationPath = 'images/';
+            $img2 = $company->id . date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $file->move($destinationPath, $img2);
+            $company->img2=$img2;
+        }
+//        Img3
+        if($file = $request->file('img3')){
+            $destinationPath = 'images/';
+            $img3 = $company->id . date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $file->move($destinationPath, $img3);
+            $company->img3=$img3;
+        }
+
+
         $company->save();
         return response()->json([
             'message' => 'success']);
