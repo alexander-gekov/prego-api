@@ -38,6 +38,7 @@ Route::middleware('auth:api')->group(function () {
 
 Route::group(['middleware' => ['json.response']], function () {
     Route::post('/appointments', [App\Http\Controllers\AppointmentController::class, 'store']);
+    Route::delete('/appointments/{id}', [App\Http\Controllers\AppointmentController::class, 'delete']);
 
     Route::get('/appointments', [App\Http\Controllers\AppointmentController::class, 'index']);
     Route::get('/appointments/unavailable', [App\Http\Controllers\AppointmentController::class, 'getUnavailableTimeslots']);
