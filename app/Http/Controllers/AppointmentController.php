@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CreatedAppointment;
 use App\Models\Appointment;
 use App\Models\Company;
 use App\Models\Employee;
@@ -9,6 +10,7 @@ use DateTime;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
 {
@@ -32,7 +34,6 @@ class AppointmentController extends Controller
        try{
            $date_start = new DateTime($decoded->{'date-start'});
            $date_end = new DateTime($decoded->{'date-end'});
-
            if ($date_start > $date_end) throw new Exception();
        }
        catch(Exception $e){
@@ -52,6 +53,14 @@ class AppointmentController extends Controller
        $appointment->date_end = $date_end;
 
        $appointment->save();
+
+       $appointment->date_start = $appointment->date_start->format('Y-m-d H:i:s');
+       $data = [
+           'employee' => 'Osborne',
+           'appointment' => $appointment
+       ];
+
+       Mail::to($appointment->email)->send(new CreatedAppointment($data));
 
        return response()->json([
            'message' => 'success'
