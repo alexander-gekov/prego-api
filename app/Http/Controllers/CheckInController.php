@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class CheckInController extends Controller
 {
-    public function checkin(Request $request){
-        return $request->appointment_id;
+    public function checkin($id,$token){
+        return $id . ' ' . $token;
     }
 }
