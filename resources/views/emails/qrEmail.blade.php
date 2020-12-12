@@ -13,6 +13,7 @@
     <li>Employee: {{$data['employee']}}</li>
 </ul>
 <p>When you are at the location, you can check in using this QR code.</p>
+{{--<img src="{{ public_path().'/images/'.$data['appointment']['qr_id'] }}"/>--}}
 
 </body>
 </html>

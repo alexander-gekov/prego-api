@@ -23,9 +23,9 @@ class Appointment extends Model
         return $this->belongsTo(Company::class);
     }
 
-    public function setAppointmentStatusAttribute()
-    {
-        if($this->attributes['appointment_status'] != 2)
-            $this->attributes['appointment_status'] += 1;
-    }
+//    public function setAppointmentStatusAttribute()
+//    {
+//        if($this->attributes['appointment_status'] != 2)
+//            $this->attributes['appointment_status'] += 1;
+//    }
 }

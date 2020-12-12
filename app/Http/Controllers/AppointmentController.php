@@ -70,20 +70,18 @@ class AppointmentController extends Controller
        ]);
    }
 
-   public function changeStatus(Request $request) {
+   public function changeStatus($qr_id) {
+       try {
+           $appointment = Appointment::firstWhere('qr_id', $qr_id);
 
-        $appointment = Appointment::find($request->qr_id)->get('appointment_status');
-        if($appointment->appointment_status != 2)
-            $appointment->appointment_status += 1;
-        $appointment->save();
+           if ($appointment->appointment_status != 2)
+               $appointment->appointment_status += 1;
+           $appointment->save();
 
-        return response()->json($appointment->appointment_status);
-
-
-//       return response()->json(
-//           Appointment::orderBy('date_start','desc')
-//               ->get(empty($request->all()) ? $this->defaultParams : $request->all())
-//       );
+           return response()->json($appointment->appointment_status);
+       } catch(Exception $e) {
+           return response()->json(['message' => 'unsuccessful'], 400);
+       }
    }
 
    // UNCHECKED
