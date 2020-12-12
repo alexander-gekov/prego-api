@@ -9,7 +9,6 @@ use App\Models\Employee;
 use DateTime;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use phpseclib\Crypt\Random;
 
@@ -38,6 +37,7 @@ class AppointmentController extends Controller
            if ($date_start > $date_end) throw new Exception();
        }
        catch(Exception $e){
+
            return response()->json(['message' => 'unsuccessful'], 400);
        }
 
@@ -53,14 +53,15 @@ class AppointmentController extends Controller
        $appointment->date_start = $date_start;
        $appointment->date_end = $date_end;
 
-       $appointment->qr_id = Random::string(10);
+       $appointment->qr_id = uniqid();
        $appointment->appointment_status = 0;
        $appointment->save();
-
        $appointment->date_start = $appointment->date_start->format('Y-m-d H:i:s');
+       $employee = Employee::where('id',$appointment->employee_id)->first();
        $data = [
-           'employee' => 'Osborne',
-           'appointment' => $appointment
+           'employee' => $employee->first_name,
+           'appointment' => $appointment,
+           'duration' => $decoded->{'duration'}
        ];
 
        Mail::to($appointment->email)->send(new CreatedAppointment($data));

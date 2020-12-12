@@ -9,11 +9,10 @@
 <p>This email is sent as a reminder for your appointment: </p>
 <ul>
     <li>Start Time: {{$data['appointment']['date_start']}}</li>
-{{--    <li>End Time: {{$data['appointment']->date_end}}</li>--}}
+    <li>Duration: {{$data['duration']}} min</li>
     <li>Employee: {{$data['employee']}}</li>
 </ul>
 <p>When you are at the location, you can check in using this QR code.</p>
-{{--<img src="{{ public_path().'/images/'.$data['appointment']['qr_id'] }}"/>--}}
-
+<img src="{!!$message->embedData(QrCode::format('png')->size(200)->generate($data['appointment']['qr_id']), 'QrCode.png', 'image/png')!!}">
 </body>
 </html>
