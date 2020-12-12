@@ -11,6 +11,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use phpseclib\Crypt\Random;
 
 class AppointmentController extends Controller
 {
@@ -52,6 +53,8 @@ class AppointmentController extends Controller
        $appointment->date_start = $date_start;
        $appointment->date_end = $date_end;
 
+       $appointment->qr_id = Random::string(10);
+       $appointment->appointment_status = 0;
        $appointment->save();
 
        $appointment->date_start = $appointment->date_start->format('Y-m-d H:i:s');
@@ -65,6 +68,22 @@ class AppointmentController extends Controller
        return response()->json([
            'message' => 'success'
        ]);
+   }
+
+   public function changeStatus(Request $request) {
+
+        $appointment = Appointment::find($request->qr_id)->get('appointment_status');
+        if($appointment->appointment_status != 2)
+            $appointment->appointment_status += 1;
+        $appointment->save();
+
+        return response()->json($appointment->appointment_status);
+
+
+//       return response()->json(
+//           Appointment::orderBy('date_start','desc')
+//               ->get(empty($request->all()) ? $this->defaultParams : $request->all())
+//       );
    }
 
    // UNCHECKED
@@ -86,10 +105,7 @@ class AppointmentController extends Controller
    }
 
    public function index(Request $request) {
-       return response()->json(
-           Appointment::orderBy('date_start','desc')
-               ->get(empty($request->all()) ? $this->defaultParams : $request->all())
-       );
+
    }
 
     public function findById(Request $request)
