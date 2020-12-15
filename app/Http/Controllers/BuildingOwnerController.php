@@ -53,7 +53,23 @@ class BuildingOwnerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $building_owner = new BuildingOwner();
+        $building_owner->user_id=$request->user_id;
+        $building_owner->building_name=$request->building_name;
+        $building_owner->first_name=$request->first_name;
+        $building_owner->last_name=$request->last_name;
+
+        $building_owner->save();
+        return response()->json([
+            'message' => 'success']);
+    }
+
+    public function delete(BuildingOwner $building_owner)
+    {
+        $building_owner->delete();
+
+        return response()->json([
+            'message' => 'success']);
     }
 
     /**

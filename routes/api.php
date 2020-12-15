@@ -33,6 +33,9 @@ Route::group(['middleware' => ['json.response']], function () {
     Route::get('/building_owner', [App\Http\Controllers\BuildingOwnerController::class, 'index']);
     Route::get('/building_owner/{user_id}', [App\Http\Controllers\BuildingOwnerController::class, 'getBuildingOwnerByUserId']);
     Route::put('/building_owner/{buildingOwner}', [App\Http\Controllers\BuildingOwnerController::class, 'update']);
+    Route::post('/building_owner', [App\Http\Controllers\BuildingOwnerController::class, 'store']);
+    Route::delete('/building_owner/{building_owner}', [App\Http\Controllers\BuildingOwnerController::class, 'delete']);
+
 });
 
 Route::middleware('auth:api')->group(function () {
