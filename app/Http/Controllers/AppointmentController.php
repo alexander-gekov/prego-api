@@ -74,9 +74,25 @@ class AppointmentController extends Controller
    public function changeStatus($qr_id) {
        try {
            $appointment = Appointment::firstWhere('qr_id', $qr_id);
+           $employee = Employee::where('id',$appointment->employee_id)->first();
+           $company = Company::where('id', $employee->company_id)->first();
+
 
            if ($appointment->appointment_status != 2)
+           {
                $appointment->appointment_status += 1;
+               $company->visitors_count += 1;
+               if ($company->current_visitors == 3)
+               {
+                   return response()->json(['message' => 'unsuccessful'], 400);
+               }
+               $company->current_visitors += 1;
+           }
+           else
+           {
+               $company->current_visitors -= 1;
+           }
+
            $appointment->save();
 
            return response()->json($appointment->appointment_status);
