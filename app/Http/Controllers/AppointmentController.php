@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\CreatedAppointment;
+use App\Mail\DeleteAppointmentMail;
 use App\Models\Appointment;
 use App\Models\Company;
 use App\Models\Employee;
@@ -169,6 +170,27 @@ class AppointmentController extends Controller
                 ->orderBy('date_start','desc')
                 ->find($request->id, empty($request->all()) ? $this->defaultParams : $request->all())
         );
+    }
+
+    public function showDeletePage(Request $request)
+    {
+        return view('deleteAppointment', ['id' => $request->id]);
+    }
+
+    public function deleteByQR(Request $request)
+    {
+        $appointment = Appointment::where('qr_id', $request->id)->get();
+        if (count($appointment) > 0) {
+            $appointment = $appointment[0];
+            $employee = Employee::where('id',$appointment->employee_id)->get()[0];
+
+            Mail::to($appointment->email)->send(new DeleteAppointmentMail($appointment, $employee));
+            $appointment->delete();
+            return view('deletedSuccessfully', ['id' => $request->id]);
+        }
+        else{
+            return view('appointmentNotFound', ['id' => $request->id]);
+        }
     }
 }
 

@@ -39,6 +39,8 @@ Route::middleware('auth:api')->group(function () {
 Route::group(['middleware' => ['json.response']], function () {
     Route::post('/appointments', [App\Http\Controllers\AppointmentController::class, 'store']);
     Route::post('/appointments/scan/{qr_id}', [App\Http\Controllers\AppointmentController::class, 'changeStatus']);
+    Route::get('/deleteAppointment/{id}',[App\Http\Controllers\AppointmentController::class, 'showDeletePage']);
+    Route::delete('/deleteAppointment/{id}',[App\Http\Controllers\AppointmentController::class, 'deleteByQR']);
 
     Route::get('/appointments', [App\Http\Controllers\AppointmentController::class, 'index']);
     Route::get('/appointments/unavailable', [App\Http\Controllers\AppointmentController::class, 'getUnavailableTimeslots']);
