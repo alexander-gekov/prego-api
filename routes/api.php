@@ -30,6 +30,12 @@ Route::group(['middleware' => ['json.response']], function () {
     Route::get('/companies/{company_id}/form/answers', [\App\Http\Controllers\FormAnswerController::class, 'getById']);
     Route::post('/companies/{company_id}/form/answers', [\App\Http\Controllers\FormAnswerController::class, 'store']);
     Route::get('/companies/{company_id}/form/answers/getData/{param?}', [\App\Http\Controllers\FormAnswerController::class, 'getData']);
+    Route::get('/building_owner', [App\Http\Controllers\BuildingOwnerController::class, 'index']);
+    Route::get('/building_owner/{user_id}', [App\Http\Controllers\BuildingOwnerController::class, 'getBuildingOwnerByUserId']);
+    Route::put('/building_owner/{buildingOwner}', [App\Http\Controllers\BuildingOwnerController::class, 'update']);
+    Route::post('/building_owner', [App\Http\Controllers\BuildingOwnerController::class, 'store']);
+    Route::delete('/building_owner/{building_owner}', [App\Http\Controllers\BuildingOwnerController::class, 'delete']);
+
 });
 
 Route::middleware('auth:api')->group(function () {
@@ -71,5 +77,6 @@ Route::middleware(['cors','auth:api'])->group(function (){
     Route::put('/employees/{employee}', [App\Http\Controllers\EmployeeController::class, 'update']);
     Route::delete('/employees/{employee}', [App\Http\Controllers\EmployeeController::class, 'delete']);
     Route::get('/{company_id}/employees',[App\Http\Controllers\EmployeeController::class, 'getEmployeesByCompanyId']);
+    Route::get('/employee/{user_id}/',[App\Http\Controllers\EmployeeController::class, 'getEmployeeByUserId']);
     Route::get('/employees',[App\Http\Controllers\EmployeeController::class, 'getEmployees']);
 });
