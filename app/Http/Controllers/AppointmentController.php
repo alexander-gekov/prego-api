@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Mail\DeleteAppointmentMail;
 use App\Mail\NotifyMail;
 use App\Mail\CreatedAppointment;
-use App\Mail\DeleteAppointmentMail;
 use App\Models\Appointment;
 use App\Models\Company;
 use App\Models\Employee;
@@ -13,7 +12,6 @@ use DateTime;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
 use phpseclib\Crypt\Random;
 
 class AppointmentController extends Controller
@@ -41,7 +39,6 @@ class AppointmentController extends Controller
            if ($date_start > $date_end) throw new Exception();
        }
        catch(Exception $e){
-
            return response()->json(['message' => 'unsuccessful'], 400);
        }
 
@@ -139,9 +136,6 @@ class AppointmentController extends Controller
         return response()->json(
             Appointment::find($request->id, empty($request->all()) ? $this->defaultParams : $request->all())
         );
-
-//        return response()->json(
-//            Appointment::where('id', $request->id)->get());
     }
 
     public function findByEmployeeId($employee_id) {
