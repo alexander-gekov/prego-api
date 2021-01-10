@@ -4,9 +4,8 @@ namespace Database\Factories;
 
 use App\Models\Appointment;
 use App\Models\Visitor;
-use Carbon\Carbon;
-use DateInterval;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use phpseclib\Crypt\Random;
 
 class AppointmentFactory extends Factory
 {
@@ -33,6 +32,8 @@ class AppointmentFactory extends Factory
         $address = $this->faker->address;
         $date_start = $this->faker->dateTimeInInterval($time, '-30 minutes');
         $date_end = $this->faker->dateTimeInInterval($time, '+30 minutes');
+        $qr_id = $this->faker->regexify('[A-Za-z0-9]{10}');
+        $appointment_status = $this->faker->numberBetween(0,2);
 
         $form_answers = json_encode(array(
             "firstname"=>$first_name,
@@ -53,7 +54,9 @@ class AppointmentFactory extends Factory
             'phone_number' => $phone_number,
             'address' => $address,
             'date_start' => $date_start,
-            'date_end' => $date_end
+            'date_end' => $date_end,
+            'qr_id' => $qr_id,
+            'appointment_status' => $appointment_status
         ];
     }
 }
