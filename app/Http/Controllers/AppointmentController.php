@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\DeleteAppointmentMail;
+use App\Mail\NotifyMail;
 use App\Mail\CreatedAppointment;
 use App\Mail\DeleteAppointmentMail;
 use App\Models\Appointment;
@@ -10,6 +12,7 @@ use App\Models\Employee;
 use DateTime;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use phpseclib\Crypt\Random;
 
@@ -136,6 +139,9 @@ class AppointmentController extends Controller
         return response()->json(
             Appointment::find($request->id, empty($request->all()) ? $this->defaultParams : $request->all())
         );
+
+//        return response()->json(
+//            Appointment::where('id', $request->id)->get());
     }
 
     public function findByEmployeeId($employee_id) {
@@ -179,6 +185,20 @@ class AppointmentController extends Controller
         );
     }
 
+    public function delete(Request $request)
+    {
+        $appointment = Appointment::where('id', $request->id)->get();
+        if (count($appointment) > 0) {
+            $appointment = $appointment[0];
+            $employee = Employee::where('id',$appointment->employee_id)->get()[0];
+            Mail::to($appointment->email)->send(new DeleteAppointmentMail($appointment, $employee));
+            Appointment::destroy($request->id);
+            return response()->json([$employee, $appointment]);
+        }
+        else{
+            return response('Appointment not found', 404);
+        }
+    }
     public function showDeletePage(Request $request)
     {
         return view('deleteAppointment', ['id' => $request->id]);
