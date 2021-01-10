@@ -33,7 +33,9 @@ class CompanyFactory extends Factory
             'img1' => 'https://picsum.photos/600',
             'img2' => 'https://picsum.photos/600',
             'img3' => 'https://picsum.photos/600',
-            'logo_img' => 'https://picsum.photos/600'
+            'logo_img' => 'https://picsum.photos/600',
+            'visitors_count' => $this->faker->numberBetween(10,30),
+            'current_visitors' => $this->faker->numberBetween(0,2),
         ];
     }
 }

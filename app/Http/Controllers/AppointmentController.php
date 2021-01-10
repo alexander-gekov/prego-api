@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\DeleteAppointmentMail;
+use App\Mail\NotifyMail;
 use App\Mail\CreatedAppointment;
 use App\Models\Appointment;
 use App\Models\Company;
@@ -10,7 +12,7 @@ use DateTime;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
+use phpseclib\Crypt\Random;
 
 class AppointmentController extends Controller
 {
@@ -34,7 +36,6 @@ class AppointmentController extends Controller
        try{
            $date_start = new DateTime($decoded->{'date-start'});
            $date_end = new DateTime($decoded->{'date-end'});
-
            if ($date_start > $date_end) throw new Exception();
        }
        catch(Exception $e){
@@ -53,20 +54,59 @@ class AppointmentController extends Controller
        $appointment->date_start = $date_start;
        $appointment->date_end = $date_end;
 
+       $appointment->qr_id = uniqid();
+       $appointment->appointment_status = 0;
        $appointment->save();
-
        $appointment->date_start = $appointment->date_start->format('Y-m-d H:i:s');
+       $employee = Employee::where('id',$appointment->employee_id)->first();
        $data = [
-           'employee' => 'Osborne',
-           'appointment' => $appointment
+           'employee' => $employee->first_name,
+           'appointment' => $appointment,
+           'duration' => $decoded->{'duration'}
        ];
 
        Mail::to($appointment->email)->send(new CreatedAppointment($data));
 
-
        return response()->json([
            'message' => 'success'
        ]);
+   }
+
+   public function changeStatus($qr_id) {
+       try {
+           $appointment = Appointment::firstWhere('qr_id', $qr_id);
+           $employee = Employee::where('id',$appointment->employee_id)->first();
+           $company = Company::where('id', $employee->company_id)->first();
+
+
+           if ($appointment->appointment_status != 2)
+           {
+               $appointment->appointment_status += 1;
+               $company->visitors_count += 1;
+
+               //MailToCheckIn
+               $data = [
+                   'appointment' => $appointment,
+               ];
+               Mail::to($employee->email)->send(new CreatedAppointment($data));
+
+               if ($company->current_visitors == 3)
+               {
+                   return response()->json(['message' => 'unsuccessful'], 400);
+               }
+               $company->current_visitors += 1;
+           }
+           else
+           {
+               $company->current_visitors -= 1;
+           }
+
+           $appointment->save();
+
+           return response()->json($appointment->appointment_status);
+       } catch(Exception $e) {
+           return response()->json(['message' => 'unsuccessful'], 400);
+       }
    }
 
    // UNCHECKED
@@ -88,10 +128,7 @@ class AppointmentController extends Controller
    }
 
    public function index(Request $request) {
-       return response()->json(
-           Appointment::orderBy('date_start','desc')
-               ->get(empty($request->all()) ? $this->defaultParams : $request->all())
-       );
+
    }
 
     public function findById(Request $request)
@@ -140,6 +177,41 @@ class AppointmentController extends Controller
                 ->orderBy('date_start','desc')
                 ->find($request->id, empty($request->all()) ? $this->defaultParams : $request->all())
         );
+    }
+
+    public function delete(Request $request)
+    {
+        $appointment = Appointment::where('id', $request->id)->get();
+        if (count($appointment) > 0) {
+            $appointment = $appointment[0];
+            $employee = Employee::where('id',$appointment->employee_id)->get()[0];
+            Mail::to($appointment->email)->send(new DeleteAppointmentMail($appointment, $employee));
+            Appointment::destroy($request->id);
+            return response()->json([$employee, $appointment]);
+        }
+        else{
+            return response('Appointment not found', 404);
+        }
+    }
+    public function showDeletePage(Request $request)
+    {
+        return view('deleteAppointment', ['id' => $request->id]);
+    }
+
+    public function deleteByQR(Request $request)
+    {
+        $appointment = Appointment::where('qr_id', $request->id)->get();
+        if (count($appointment) > 0) {
+            $appointment = $appointment[0];
+            $employee = Employee::where('id',$appointment->employee_id)->get()[0];
+
+            Mail::to($appointment->email)->send(new DeleteAppointmentMail($appointment, $employee));
+            $appointment->delete();
+            return view('deletedSuccessfully', ['id' => $request->id]);
+        }
+        else{
+            return view('appointmentNotFound', ['id' => $request->id]);
+        }
     }
 }
 

@@ -55,6 +55,12 @@ class EmployeeController extends Controller
         return $employees;
     }
 
+    public function getEmployeeById(Request $request){
+        $employee = Employee::where('id',$request->id)->get();
+
+        return response()->json($employee);
+    }
+
     public function getEmployees(Request $request){
         if($request->query()){
             $company_name = $request->query('company_name');
@@ -83,5 +89,9 @@ class EmployeeController extends Controller
                 "message" => "Please specify query param."
             ]);
         }
+    }
+
+    public function getEmployeeByUserId(Request $request) {
+        return response()->json(Employee::where('user_id',$request->user_id)->get());
     }
 }

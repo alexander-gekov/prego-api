@@ -29,6 +29,8 @@ class CreateAppointmentsTable extends Migration
             $table->string('address')->nullable();
             $table->dateTime('date_start');
             $table->dateTime('date_end');
+            $table->string('qr_id')->index('qr_id');
+            $table->unsignedBigInteger('appointment_status');
 
             $table->timestamps();
             $table->softDeletes();
