@@ -82,6 +82,13 @@ class AppointmentController extends Controller
            {
                $appointment->appointment_status += 1;
                $company->visitors_count += 1;
+
+               //MailToCheckIn
+               $data = [
+                   'appointment' => $appointment,
+               ];
+               Mail::to($employee->email)->send(new CreatedAppointment($data));
+
                if ($company->current_visitors == 3)
                {
                    return response()->json(['message' => 'unsuccessful'], 400);
