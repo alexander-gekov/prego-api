@@ -38,7 +38,7 @@ return [
             'transport' => 'smtp',
             'host' => 'smtp.googlemail.com',
             'port' => 587,
-            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+            'encryption' => 'tls',
             'username' => 'pfontys@gmail.com',
             'password' => 'projectsfontys',
             'timeout' => null,

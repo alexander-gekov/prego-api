@@ -26,6 +26,8 @@ class CreateCompaniesTable extends Migration
             $table->text('img2')->nullable();
             $table->text('img3')->nullable();
             $table->text('logo_img');
+            $table->integer('visitors_count');
+            $table->integer('current_visitors');
             $table->timestamps();
             $table->softDeletes();
 
