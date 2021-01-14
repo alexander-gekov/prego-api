@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
-Route::group(['middleware' => ['json.response']], function () {
+Route::group(['middleware' => ['json.response','cors']], function () {
     // public routes
     //THIS IS THE WAY OF WRITING THE ROUTES IN LARAVEL 8 (LIKE AN ARRAY)!!!
     Route::post('/login', [\App\Http\Controllers\Auth\ApiAuthController::class, 'login'])->name('login.api');
@@ -40,7 +40,7 @@ Route::group(['middleware' => ['json.response']], function () {
 
 });
 
-Route::middleware('auth:api')->group(function () {
+Route::middleware(['auth:api','cors'])->group(function () {
     Route::post('/logout', [\App\Http\Controllers\Auth\ApiAuthController::class, 'logout'])->name('logout.api');
 });
 
